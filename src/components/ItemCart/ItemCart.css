@@ -1,0 +1,37 @@
+.ItemCart {
+    width: 90%;
+    display: flex;
+    background-color: white;
+    border-top: .5px solid #b1aaaa;
+}
+
+.ItemCart__image {
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+}
+
+.ItemCart__image>img {
+    width: 180px;
+    height: 180px;
+}
+
+.ItemCart__info {
+    margin-left: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ItemCart__title {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.ItemCart__description {
+    font-weight: lighter;
+}
+
+.ItemCart__rating {
+    display: flex;
+}

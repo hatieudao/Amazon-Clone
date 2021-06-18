@@ -1,0 +1,36 @@
+.category {
+    height: 420px;
+    width: 350px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding-left: 10px;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, .5);
+}
+
+.photo>img {
+    width: 330px;
+    height: 320px;
+    object-fit: cover;
+}
+
+.category>h2 {
+    font-size: 21px !important;
+    overflow: hidden;
+}
+
+.category>a {
+    text-decoration: none;
+    overflow: hidden;
+    transform: .2s linear;
+}
+
+.category__link>p:hover {
+    color: #d47c08;
+    text-decoration: underline;
+}
