@@ -5,6 +5,7 @@
 
 body {
     background-color: #EAEDED;
-    min-width: 1180px;
+    min-width: 1150px;
     max-width: 100vw;
+    box-sizing: border-box;
 }

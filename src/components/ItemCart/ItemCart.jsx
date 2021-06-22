@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { useDispatch } from 'react-redux'
 import { updateQuantity, deleteProduct } from '../../redux/Actions/Product';
 
@@ -6,7 +6,7 @@ import Aos from 'aos';
 import "aos/dist/aos.css";
 import './ItemCart.css';
 
-function ItemCart({ product }) {
+const ItemCart = ({ product, ref }) => {
     const [quantity, setQuantity] = useState(product.quantity);
 
     const addQuantity = () => setQuantity(quantity + 1);
@@ -30,7 +30,7 @@ function ItemCart({ product }) {
     }
 
     return (
-        <div aos-data className="ItemCart">
+        <div aos-data className="ItemCart" ref={ref}>
             <div className="ItemCart__image">
                 <img src={product.image} alt="product" />
             </div>
@@ -51,18 +51,17 @@ function ItemCart({ product }) {
                 <div className="ItermCart__selection">
                     <div className="ItemCart__setQuantity">
                         <button onClick={addQuantity}> + </button>
-                        <input type="text" className="ItemCard__selection__quantity"
-                            value={quantity}
+                        <input type="text" value={quantity}
                         />
+                        <button onClick={subQuantity}> - </button>
+                        <button type="submit" onClick={() => updateProductQuantity(quantity)}>Set</button>
                     </div>
-                    <button onClick={subQuantity}> - </button>
-                    <button type="submit" onClick={() => updateProductQuantity(quantity)}>Set</button>
                     <button type="submit" onClick={() => deleteProductFromBasket(product)}>Remove from basket</button>
                 </div>
             </div>
         </div>
     )
-}
+};
 
 
 export default ItemCart;

@@ -35,3 +35,46 @@
 .ItemCart__rating {
     display: flex;
 }
+
+.ItermCart__selection {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.ItemCart__setQuantity {
+    display: flex;
+    width: 150px;
+    justify-content: space-between;
+}
+
+.ItemCart__setQuantity>input {
+    width: calc(100%/5);
+    text-align: center;
+}
+
+.ItemCart__setQuantity>button {
+    width: calc(100%/5);
+    background-color: #d47c08;
+    border: none;
+    border-radius: 5px;
+    transition: .2s linear;
+}
+
+.ItemCart__setQuantity>button:hover {
+    background-color: #be6d03;
+    cursor: pointer;
+}
+
+.ItermCart__selection>button {
+    color: rgb(63, 65, 219);
+    background-color: white;
+    padding: 5px;
+    border-radius: 3px;
+    border: none;
+    transform: .2s linear;
+}
+
+.ItermCart__selection>button:hover {
+    text-decoration: underline;
+}

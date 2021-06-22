@@ -4,3 +4,25 @@
     justify-content: center;
     align-items: center;
 }
+
+.addSuccessfulPopup {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    border-radius: 10px;
+    border: 1px black;
+    animation: popupLeave 4s;
+}
+
+@keyframes popupLeave {
+    from {
+        opacity: 1;
+    }
+    70% {
+        opacity: .7;
+    }
+    to {
+        opacity: 0;
+    }
+}

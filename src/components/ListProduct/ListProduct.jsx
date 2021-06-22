@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
-
 import { API_PRODUCT } from '../../API/Product.API';
 
 import Product from '../Product/Product';
+import NotifyPopup from '../Popup/NotifyPopup';
 import './ListProducts.css';
+
 
 function ListProduct() {
     const [products, setProducts] = useState([])
@@ -44,14 +45,29 @@ function ListProduct() {
 
 
     }, []);
-    console.log(products);
+
+    const [isOpenPopup, setIsOpenPopup] = useState(false)
+    let timer = null;
+    const openPopup = () => {
+        if (timer) clearTimeout(timer);
+        setIsOpenPopup(true);
+        timer = setTimeout(() => setIsOpenPopup(false), 4000);
+    }
+
     return (
         <div className="listProducts">
             {
                 products.map(item => <Product
                     key={item.id}
                     product={item}
+                    openPopup={openPopup}
                 />)
+            }
+            {
+                isOpenPopup &&
+                <div className="addSuccessfulPopup">
+                    <NotifyPopup content="Add Successfully" />
+                </div>
             }
         </div>
     )

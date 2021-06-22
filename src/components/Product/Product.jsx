@@ -7,7 +7,7 @@ import './Product.css';
 import Aos from 'aos';
 import "aos/dist/aos.css";
 
-function Product({ product }) {
+function Product({ product, openPopup }) {
     const dispatch = useDispatch();
     const addBasket = (product) => {
         dispatch(addProduct(product))
@@ -37,7 +37,17 @@ function Product({ product }) {
                 </div>
             </div>
             <img src={product.image} alt="product" />
-            <button onClick={() => addBasket(product)}>Add to Basket</button>
+            <button onClick={() => {
+                try {
+                    addBasket(product);
+                    openPopup();
+                } catch (error) {
+                    alert(error.message)
+                }
+
+            }}>
+                Add to Basket
+            </button>
         </div>
     )
 }

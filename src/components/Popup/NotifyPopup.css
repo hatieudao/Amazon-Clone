@@ -1,0 +1,10 @@
+.NotifyPopup {
+    width: 250px;
+    height: 60px;
+    border: 1px black;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
