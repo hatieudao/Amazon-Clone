@@ -19,3 +19,8 @@ export const updateQuantity = (product, quantity) => {
         quantity: quantity
     }
 }
+export const emptyCart = () => {
+    return {
+        type: types.EMPTY_CART
+    }
+}

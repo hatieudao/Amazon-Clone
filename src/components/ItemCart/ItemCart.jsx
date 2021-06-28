@@ -1,26 +1,15 @@
-import React, { useState, useEffect, forwardRef } from 'react';
-import { useDispatch } from 'react-redux'
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import './ItemCart.css'
 import { updateQuantity, deleteProduct } from '../../redux/Actions/Product';
-
-import Aos from 'aos';
-import "aos/dist/aos.css";
-import './ItemCart.css';
-
-const ItemCart = ({ product, ref }) => {
+const ItemCart = ({ product, setNewQuantity }) => {
     const [quantity, setQuantity] = useState(product.quantity);
 
     const addQuantity = () => setQuantity(quantity + 1);
     const subQuantity = () => setQuantity(quantity === 1 ? quantity : quantity - 1);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        Aos.init({
-            duration: 2000,
-            delay: 100
-        })
-    }, [])
-
-    const updateProductQuantity = (newQuantity) => {
+    const updateProductQuantity = (product, newQuantity) => {
         if (product.quantity === newQuantity) return;
         dispatch(updateQuantity(product, newQuantity));
     }
@@ -30,7 +19,7 @@ const ItemCart = ({ product, ref }) => {
     }
 
     return (
-        <div aos-data className="ItemCart" ref={ref}>
+        <div className="ItemCart">
             <div className="ItemCart__image">
                 <img src={product.image} alt="product" />
             </div>
@@ -51,10 +40,12 @@ const ItemCart = ({ product, ref }) => {
                 <div className="ItermCart__selection">
                     <div className="ItemCart__setQuantity">
                         <button onClick={addQuantity}> + </button>
-                        <input type="text" value={quantity}
-                        />
+                        <input type="text" value={quantity} readOnly />
                         <button onClick={subQuantity}> - </button>
-                        <button type="submit" onClick={() => updateProductQuantity(quantity)}>Set</button>
+                        <button type="submit" onClick={() => {
+                            updateProductQuantity(product, quantity);
+                            if (setNewQuantity) setNewQuantity();
+                        }}>Set</button>
                     </div>
                     <button type="submit" onClick={() => deleteProductFromBasket(product)}>Remove from basket</button>
                 </div>

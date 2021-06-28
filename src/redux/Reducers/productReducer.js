@@ -36,6 +36,10 @@ const productReducer = (state = initialState, action) => {
                 ...state,
                 products: basket
             }
+        case types.EMPTY_CART:
+            return {
+                products: []
+            }
         default:
             return state
     }
