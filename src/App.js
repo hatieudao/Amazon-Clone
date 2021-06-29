@@ -5,6 +5,8 @@ import Home from './components/Home/Home';
 import Checkout from './components/Checkout/Checkout';
 import ListProduct from './components/ListProduct/ListProduct';
 import Payment from './components/Payment/Payment';
+import Orders from './components/Orders/Orders';
+import Register from './components/Register/Register';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NotFound from './components/404/NotFound';
 import { auth } from './fisebase';
@@ -37,6 +39,9 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
           <Route path="/checkout">
             <Header />
             <Checkout />
@@ -50,6 +55,10 @@ function App() {
             <Elements stripe={promise}>
               <Payment />
             </Elements>
+          </Route>
+          <Route path="/orders">
+            <Header />
+            <Orders />
           </Route>
           <Route exact path="/">
             <Header />

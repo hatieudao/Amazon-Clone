@@ -45,11 +45,12 @@ function Header() {
                         {userEmail && <span className="header__lineTwo" onClick={handleAuthentication}>Sign Out</span>}
                     </div>
                 </Link>
-
-                <div className="header__option">
-                    <span className="header__lineOne">Returns</span>
-                    <span className="header__lineTwo">& Orders</span>
-                </div>
+                <Link to="/orders" className="route__link">
+                    <div className="header__option">
+                        <span className="header__lineOne">Returns</span>
+                        <span className="header__lineTwo">& Orders</span>
+                    </div>
+                </Link>
                 <Link to="/checkout" className="route__link" >
                     <div className="header__option heade__cart">
                         <span className="cartCounting">{quantityOfBasket}</span>

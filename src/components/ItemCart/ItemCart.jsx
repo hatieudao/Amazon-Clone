@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './ItemCart.css'
 import { updateQuantity, deleteProduct } from '../../redux/Actions/Product';
-const ItemCart = ({ product, setNewQuantity }) => {
+const ItemCart = ({ product, setNewQuantity, hidenButton }) => {
     const [quantity, setQuantity] = useState(product.quantity);
 
     const addQuantity = () => setQuantity(quantity + 1);
@@ -39,15 +39,28 @@ const ItemCart = ({ product, setNewQuantity }) => {
                 </div>
                 <div className="ItermCart__selection">
                     <div className="ItemCart__setQuantity">
-                        <button onClick={addQuantity}> + </button>
+                        {
+                            hidenButton &&
+                            <button onClick={addQuantity}> + </button>
+                        }
                         <input type="text" value={quantity} readOnly />
-                        <button onClick={subQuantity}> - </button>
-                        <button type="submit" onClick={() => {
-                            updateProductQuantity(product, quantity);
-                            if (setNewQuantity) setNewQuantity();
-                        }}>Set</button>
+                        {
+                            hidenButton &&
+                            <button onClick={subQuantity}> - </button>
+                        }
+                        {
+                            hidenButton &&
+                            <button type="submit" onClick={() => {
+                                updateProductQuantity(product, quantity);
+                                if (setNewQuantity) setNewQuantity();
+                            }}>Set</button>
+                        }
+
                     </div>
-                    <button type="submit" onClick={() => deleteProductFromBasket(product)}>Remove from basket</button>
+                    {
+                        hidenButton &&
+                        <button type="submit" onClick={() => deleteProductFromBasket(product)}>Remove from basket</button>
+                    }
                 </div>
             </div>
         </div>

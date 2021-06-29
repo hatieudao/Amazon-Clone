@@ -7,6 +7,7 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
 import axios from '../../axios';
 import { emptyCart } from '../../redux/Actions/Product';
+import { db } from '../../fisebase';
 function Payment() {
 
     const user = useSelector(state => state.user);
@@ -29,11 +30,21 @@ function Payment() {
                 card: elements.getElement(CardElement)
             }
         }).then(({ paymentIntent }) => {
+
+            db
+                .collection('users')
+                .doc(user?.uid)
+                .collection('orders')
+                .doc(paymentIntent.id)
+                .set({
+                    basket: basket,
+                    amount: paymentIntent.amount,
+                    created: paymentIntent.created
+                });
+
             setSucceeded(true);
             setError(null);
             setProcessing(false);
-
-            dispatch(emptyCart());
 
             history.replace('/orders');
         });
@@ -53,7 +64,6 @@ function Payment() {
         }
         getClientSecret();
     }, [basket])
-    console.log("secret : ", clientSecret);
     return (
         <div className="payment">
             <div className="payment__container">
