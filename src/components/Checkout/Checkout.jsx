@@ -30,6 +30,7 @@ function Checkout() {
                         key={item.id}
                         product={item}
                         setNewQuantity={openPopup}
+                        hidenButton={true}
                     />)
 
                     : <div className="nothing">Nothing on your Cart</div>
