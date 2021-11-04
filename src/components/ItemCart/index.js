@@ -11,9 +11,9 @@ const ItemCart = ({ product, setNewQuantity, hidenButton }) => {
     setQuantity(quantity === 1 ? quantity : quantity - 1)
   const dispatch = useDispatch()
 
-  const updateProductQuantity = (product, newQuantity) => {
-    if (product.quantity === newQuantity) return
-    dispatch(updateQuantity(product, newQuantity))
+  const updateProductQuantity = (addedProduct, newQuantity) => {
+    if (addedProduct.quantity === newQuantity) return
+    dispatch(updateQuantity(addedProduct, newQuantity))
   }
 
   const deleteProductFromBasket = (removedProduct) => {
@@ -41,9 +41,19 @@ const ItemCart = ({ product, setNewQuantity, hidenButton }) => {
         </div>
         <div className="ItermCart__selection">
           <div className="ItemCart__setQuantity">
-            {hidenButton && <button onClick={addQuantity}> + </button>}
+            {hidenButton && (
+              <button type="button" onClick={addQuantity}>
+                {' '}
+                +{' '}
+              </button>
+            )}
             <input type="text" value={quantity} readOnly />
-            {hidenButton && <button onClick={subQuantity}> - </button>}
+            {hidenButton && (
+              <button type="button" onClick={subQuantity}>
+                {' '}
+                -{' '}
+              </button>
+            )}
             {hidenButton && (
               <button
                 type="submit"

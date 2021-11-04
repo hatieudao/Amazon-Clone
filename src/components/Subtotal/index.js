@@ -1,14 +1,14 @@
 import React from 'react'
 import CurrencyFormat from 'react-currency-format'
 import { useHistory } from 'react-router'
-import './Subtotal.css'
+import './Subtotal.scss'
 
 function Subtotal({ basket }) {
   const history = useHistory()
-  const total = basket.reduce(
-    (sum, item) => (sum += item.price * item.quantity),
-    0,
-  )
+  const total = basket.reduce((sum, item) => {
+    const newSum = sum + item.price * item.quantity
+    return newSum
+  }, 0)
   return (
     <div className="subtotal">
       <CurrencyFormat
@@ -29,7 +29,7 @@ function Subtotal({ basket }) {
         thousandSeparator
         prefix="$"
       />
-      <button onClick={() => history.push('/payment')}>
+      <button type="button" onClick={() => history.push('/payment')}>
         Proceed to Checkout
       </button>
     </div>

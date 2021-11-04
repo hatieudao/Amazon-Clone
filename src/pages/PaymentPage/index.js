@@ -1,53 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
+import { Link } from 'react-router-dom'
+import { CardElement } from '@stripe/react-stripe-js'
 import CurrencyFormat from 'react-currency-format'
 import ItemCart from '../../components/ItemCart'
 import axios from '../../axios'
-import { db } from '../../fisebase'
 import './Payment.scss'
 function PaymentPage() {
   const user = useSelector((state) => state.user)
   const basket = useSelector((state) => state.basket.products)
-  const total = basket.reduce(
-    (sum, item) => (sum += item.price * item.quantity),
-    0,
-  )
-  const stripe = useStripe()
-  const elements = useElements()
-  const history = useHistory()
+  const total = basket.reduce((sum, item) => {
+    const newSum = sum + item.price * item.quantity
+    return newSum
+  }, 0)
+
   const [error, setError] = useState(null)
   const [disabled, setDisabled] = useState(true)
   const [processing, setProcessing] = useState('')
+  // eslint-disable-next-line no-unused-vars
   const [succeeded, setSucceeded] = useState(false)
+  // eslint-disable-next-line no-unused-vars
   const [clientSecret, setClientSecret] = useState(true)
   const handleSubmit = async (e) => {
     e.preventDefault()
     setProcessing(true)
-    const payload = await stripe
-      .confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-        },
-      })
-      .then(({ paymentIntent }) => {
-        db.collection('users')
-          .doc(user?.uid)
-          .collection('orders')
-          .doc(paymentIntent.id)
-          .set({
-            basket,
-            amount: paymentIntent.amount,
-            created: paymentIntent.created,
-          })
-
-        setSucceeded(true)
-        setError(null)
-        setProcessing(false)
-
-        history.replace('/orders')
-      })
   }
   const handleChange = (e) => {
     setDisabled(e.empty)
@@ -123,7 +99,10 @@ function PaymentPage() {
                   thousandSeparator
                   prefix="$"
                 />
-                <button disabled={processing || disabled || succeeded}>
+                <button
+                  type="button"
+                  disabled={processing || disabled || succeeded}
+                >
                   <span>{processing ? <p>Processing</p> : 'Buy Now'}</span>
                 </button>
               </div>

@@ -56,12 +56,11 @@ function Categories() {
   ]
   return (
     <div className="categories">
-      {catalog.map((data, index) => (
+      {catalog.map((data) => (
         <Category
-          key={index}
           title={data.title}
           photo={data.photo}
-          link={`${'/products' + '/'}${data.link}`}
+          link={`${'/products/'}${data.link}`}
         />
       ))}
     </div>

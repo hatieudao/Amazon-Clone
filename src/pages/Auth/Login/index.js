@@ -15,10 +15,10 @@ function Login() {
     e.preventDefault()
     auth
       .signInWithEmailAndPassword(email, password)
-      .then((auth) => {
+      .then(() => {
         history.push('/')
       })
-      .catch((e) => alert(e.message))
+      .catch((error) => alert(error.message))
   }
 
   const register = (e) => {
@@ -48,15 +48,23 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button className="login__signinButton" onClick={signIn}>
+          <button
+            className="login__signinButton"
+            type="submit"
+            onClick={signIn}
+          >
             Sign-in
           </button>
         </form>
         <p>
-          By continuing, you agree to Amazon Fake Clone's Conditions of Use and
-          Privacy Notice.
+          By continuing, you agree to Amazon Fake Clone&apos;s Conditions of Use
+          and Privacy Notice.
         </p>
-        <button className="login__registerButton" onClick={register}>
+        <button
+          className="login__registerButton"
+          type="button"
+          onClick={register}
+        >
           Create your Amazon Fake Clone Account
         </button>
       </div>

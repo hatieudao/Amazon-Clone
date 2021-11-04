@@ -9,11 +9,10 @@ import { auth } from '../../fisebase'
 
 function Header() {
   const basket = useSelector((state) => state.basket.products)
-  // eslint-disable-next-line no-return-assign
-  const quantityOfBasket = basket.reduce(
-    (quantity, item) => (quantity += item.quantity),
-    0,
-  )
+  const quantityOfBasket = basket.reduce((quantity, item) => {
+    const newQuantity = quantity + item.quantity
+    return newQuantity
+  }, 0)
   const user = useSelector((state) => state?.user)
   const userEmail = user?.email
   const history = useHistory()
@@ -52,7 +51,11 @@ function Header() {
               <span className="header__lineTwo">Account & List</span>
             )}
             {userEmail && (
-              <span className="header__lineTwo" onClick={handleAuthentication}>
+              <span
+                className="header__lineTwo"
+                onClick={handleAuthentication}
+                role="presentation"
+              >
                 Sign Out
               </span>
             )}

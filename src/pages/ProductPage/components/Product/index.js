@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react'
-
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 import { useDispatch } from 'react-redux'
 import { addProduct } from '../../../../redux/Actions/Product'
 import './Product.css'
 
-import Aos from 'aos'
-import 'aos/dist/aos.css'
-
 function Product({ product, openPopup }) {
   const dispatch = useDispatch()
-  const addBasket = (product) => {
-    dispatch(addProduct(product))
+  const addBasket = (addedProduct) => {
+    dispatch(addProduct(addedProduct))
   }
 
   useEffect(() => {
@@ -38,6 +36,7 @@ function Product({ product, openPopup }) {
       </div>
       <img src={product.image} alt="product" />
       <button
+        type="button"
         onClick={() => {
           try {
             addBasket(product)

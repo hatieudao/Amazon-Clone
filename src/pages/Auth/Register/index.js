@@ -21,10 +21,10 @@ function Register() {
     e.preventDefault()
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then((auth) => {
+      .then(() => {
         history.push('/')
       })
-      .catch((e) => alert(e.message))
+      .catch((error) => alert(error.message))
   }
 
   return (
@@ -55,10 +55,11 @@ function Register() {
             onChange={(e) => setRetypePassword(e.target.value)}
           />
           {password !== retypePassword && (
-            <p className="error">Password doesn't match</p>
+            <p className="error">Password doesn&apost match</p>
           )}
           <button
             className="login__signinButton"
+            type="button"
             onClick={register}
             disabled={password !== retypePassword}
           >
@@ -66,10 +67,14 @@ function Register() {
           </button>
         </form>
         <p>
-          By continuing, you agree to Amazon Fake Clone's Conditions of Use and
-          Privacy Notice.
+          By continuing, you agree to Amazon Fake Clone&apos;s Conditions of Use
+          and Privacy Notice.
         </p>
-        <button className="login__registerButton" onClick={toLoginPage}>
+        <button
+          className="login__registerButton"
+          type="submit"
+          onClick={toLoginPage}
+        >
           Login To Amazon Fake Clone By Your Account
         </button>
       </div>
