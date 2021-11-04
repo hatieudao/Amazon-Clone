@@ -1,0 +1,27 @@
+.slideShow {
+    position: relative;
+    min-width: 900px;
+
+    img {
+        transition: all .1s ease-in-out;
+        z-index: -1;
+        min-width: 100vw;
+        object-fit: contain;
+    }
+
+    .btn {
+        font-size: 70px !important;
+        font-weight: 100 !important;
+
+        &_left {
+            position: absolute;
+            left: 0;
+            top: 20%;
+        }
+
+        &_right {
+            position: absolute;
+            right: 0;
+            top: 20%;  }
+    }
+}

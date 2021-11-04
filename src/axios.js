@@ -1,8 +1,7 @@
-import axios from "axios";
+import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: 'https://amazon-fake-api1.herokuapp.com/'
-});
+  baseURL: 'https://amazon-fake-api1.herokuapp.com/',
+})
 
-
-export default instance;
+export default instance

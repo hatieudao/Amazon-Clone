@@ -1,26 +1,18 @@
-import * as types from './Type.js'
+import * as types from './Type'
 
-export const addProduct = (product) => {
-    return {
-        type: types.ADD_PRODUCT,
-        product: product
-    }
-}
-export const deleteProduct = (product) => {
-    return {
-        type: types.DELETE_PRODUCT,
-        product: product
-    }
-}
-export const updateQuantity = (product, quantity) => {
-    return {
-        type: types.UPDATE_QUANTITY,
-        product: product,
-        quantity: quantity
-    }
-}
-export const emptyCart = () => {
-    return {
-        type: types.EMPTY_CART
-    }
-}
+export const addProduct = (product) => ({
+  type: types.ADD_PRODUCT,
+  product,
+})
+export const deleteProduct = (product) => ({
+  type: types.DELETE_PRODUCT,
+  product,
+})
+export const updateQuantity = (product, quantity) => ({
+  type: types.UPDATE_QUANTITY,
+  product,
+  quantity,
+})
+export const emptyCart = () => ({
+  type: types.EMPTY_CART,
+})

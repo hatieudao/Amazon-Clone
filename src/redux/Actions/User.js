@@ -1,13 +1,9 @@
-import * as types from './Type.js'
+import * as types from './Type'
 
-export const userLogin = (user) => {
-    return {
-        type: types.USER_LOGIN,
-        user: user
-    }
-}
-export const userLogout = () => {
-    return {
-        type: types.USER_LOGOUT
-    }
-}
+export const userLogin = (user) => ({
+  type: types.USER_LOGIN,
+  user,
+})
+export const userLogout = () => ({
+  type: types.USER_LOGOUT,
+})
